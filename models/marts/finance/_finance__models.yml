@@ -1,0 +1,28 @@
+models:
+- name: fct_orders
+  description: This model provides a comprehensive view of customer orders, capturing
+    essential details such as the order identifier, customer identifier, order date,
+    and the total amount of the order. It serves as a foundational dataset for analyzing
+    order trends, customer purchasing behavior, and revenue generation over time.
+  columns:
+  - name: order_id
+    description: A unique identifier for each order. Primary key.
+    data_tests:
+      - unique
+      - not_null
+  - name: customer_id
+    description: The identifier for the customer who placed the order.
+    data_tests:
+      - not_null
+      - relationships:
+          arguments:
+            to: ref('dim_customers')
+            field: customer_id
+  - name: order_date
+    description: The date on which the order was placed.
+    data_tests:
+      - not_null
+  - name: amount
+    description: The total monetary value of the order.
+    data_tests:
+      - not_null
