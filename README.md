@@ -92,6 +92,8 @@ Marts
 └── dim_customers
 ```
 
+![Lineage](./Lineage.png)
+
 👉 This lineage ensures:
 * Full traceability of data
 * Clear dependencies between models
