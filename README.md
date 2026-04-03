@@ -2,24 +2,28 @@
 
 ## 📊 Project Overview
 
-This project is part of the *dbt Fundamentals* course and focuses on transforming raw data into clean, analytics-ready models using dbt.
+This project is based on the **dbt Fundamentals** course, which I have completed and validated with the official badge.
 
-Using the Jaffle Shop dataset, the goal is to build a robust data transformation pipeline following analytics engineering best practices.
+Using the Jaffle Shop dataset, I built a complete transformation pipeline to turn raw data into clean, reliable, and analytics-ready models — following analytics engineering best practices.
+
+This project reflects both my learning journey and my first concrete implementation of dbt in a real-world-like use case.
 
 ---
 
 ## 🎯 Project Goals
 
-* Learn and apply core concepts of dbt
-* Transform raw data into structured, reliable models
-* Implement modular SQL transformations
-* Ensure data quality through testing
+* Apply core dbt concepts in a hands-on project
+* Structure a transformation pipeline using best practices
+* Build reliable and tested data models
+* Understand data lineage and dependencies
 
 ---
 
 ## 📌 Project Status
 
-🚧 **Work in progress** — currently progressing through the dbt Fundamentals course.
+✅ **Completed (dbt Fundamentals)**
+
+🔄 Continuously improving with more advanced features
 
 ---
 
@@ -38,8 +42,11 @@ Typical dbt project structure:
 ```id="hmt7zs"
 models/
   staging/
+    jaffle_shop/
+    stripe/
   marts/
-  intermediate/
+    finance/
+    marketing/
 
 tests/
 seeds/
@@ -52,30 +59,59 @@ snapshots/
 
 ### 1. Staging Layer
 
-* Clean raw source data
-* Rename columns
-* Standardize formats
+* Cleaning raw source data
+* Renaming columns
+* Standardizing formats
+* Creating a consistent base for transformations
 
-### 2. Intermediate Models
+### 2. Mart Layer
 
-* Apply business logic
-* Join and enrich datasets
+* Business-oriented models
+* Aggregations and joins
+* Final tables ready for analytics (e.g. customers, orders)
 
-### 3. Mart Layer
+---
 
-* Final models ready for analytics
-* Organized by business entities (customers, orders, etc.)
+## 🔗 Data Lineage
+
+This project follows a clear transformation flow from raw sources to final business models:
+
+```
+Sources
+├── jaffle_shop.customers
+├── jaffle_shop.orders
+└── stripe.payments
+
+Staging
+├── stg_jaffle_shop__customers
+├── stg_jaffle_shop__orders
+└── stg_stripe__payments
+
+Marts
+├── fct_orders
+└── dim_customers
+```
+
+👉 This lineage ensures:
+* Full traceability of data
+* Clear dependencies between models
+* Easier debugging and maintenance
 
 ---
 
 ## ✅ Data Quality & Testing
+One of my favorite parts of the course 💙
 
-* Implemented **dbt tests**:
-
+Implemented dbt tests to ensure data reliability:
   * `not_null`
   * `unique`
   * `relationships`
-* Ensures data reliability and integrity
+  * `accepted_value`
+
+These tests guarantee:
+* Data integrity
+* Consistency between models
+* Early detection of issues
 
 ---
 
@@ -85,21 +121,27 @@ snapshots/
 * Data lineage & dependencies
 * Reusable transformations
 * Documentation with dbt
+* Separation of concerns (staging vs marts)
 
 ---
 
-## 🚀 What I’m Learning
+## 🎓 My Learning Journey
 
-* Analytics engineering best practices
-* Structuring scalable data models
-* Writing production-ready SQL
-* Using dbt for end-to-end transformation workflows
+This project is part of my transition toward **Analytics Engineering.**
+
+What I’ve implemented:
+
+🧩 **Modularity**: Structured the project into staging and marts layers for clarity and scalability.
+
+🔁 **Jinja & Macros (in progress)**: Started using templating to make SQL more dynamic and reusable.
+
+⚡ **Incremental Models (next step)**: Planning to optimize performance and costs in BigQuery by loading only new data.
 
 ---
 
 ## 🔗 Next Steps
 
-* Complete all dbt Fundamentals modules
-* Add more advanced tests
-* Document models using dbt docs
-* Integrate with a BI tool (e.g., Power BI or Looker)
+* Implement incremental models
+* Create custom macros
+* Improve documentation with `dbt docs`
+* Add more advanced tests (e.g. custom tests)
